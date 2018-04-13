@@ -24,14 +24,13 @@ export class HomePage {
     if (!this.platform.is('cordova')) {
       this.historyProvider.AddToHistory("geo:-32.87701859465277,-68.84461440552252");
       return;
-    }
-
+    }    
     this.barcodeScanner.scan().then(
       (scanData) => {
         console.log("Result: " + scanData.text);
         console.log("Formato: " + scanData.format);
         console.log("Cancelled: " + scanData.cancelled);
-        if (scanData.cancelled != false && scanData.text != null) {
+        if (scanData.cancelled != true && scanData.text != null) {          
           this.historyProvider.AddToHistory(scanData.text);
         }
       }, (err) => {

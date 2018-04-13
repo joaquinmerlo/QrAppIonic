@@ -15,10 +15,10 @@ export class HistoryProvider {
     
   }
 
-  AddToHistory(text: string) {
+  AddToHistory(text: string) {   
     let newScan = new ScanData(text);
     this._history.unshift(newScan);
-    console.log(newScan);
+    console.log(newScan);    
     this.OpenScan(0);
   }
 
