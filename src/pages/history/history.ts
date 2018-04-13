@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { ScanData } from '../../models/ScanData.model';
+import { HistoryProvider}  from '../../providers/history/history'
 /**
  * Generated class for the HistoryPage page.
  *
@@ -15,11 +16,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class HistoryPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  private scans:ScanData[] = [];
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,private historyProvider:HistoryProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HistoryPage');
+    this.scans = this.historyProvider.LoadHistory();
   }
 
+  OpenScan(index:number){
+    this.historyProvider.OpenScan(index);
+  }
 }

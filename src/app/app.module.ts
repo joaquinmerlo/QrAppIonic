@@ -5,8 +5,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
+//Pages
 import { HomePage, HistoryPage, MapPage, TabsPage } from '../pages/importPages.pages';
-import { BarcodeScanner} from '@ionic-native/barcode-scanner'
+//plugins
+import { BarcodeScanner } from '@ionic-native/barcode-scanner'
+import { InAppBrowser } from '@ionic-native/in-app-browser';
+//Providers
+import { HistoryProvider } from '../providers/history/history';
+//mapas
+import { AgmCoreModule } from '@agm/core'
 
 
 @NgModule({
@@ -16,7 +23,10 @@ import { BarcodeScanner} from '@ionic-native/barcode-scanner'
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBsXfEZMT4ndwUNQO63tMhRBbwMu73nrGE'
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -27,7 +37,7 @@ import { BarcodeScanner} from '@ionic-native/barcode-scanner'
     StatusBar,
     SplashScreen, BarcodeScanner,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-
+    HistoryProvider, InAppBrowser
   ]
 })
 export class AppModule { }

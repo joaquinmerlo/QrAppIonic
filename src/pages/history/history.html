@@ -13,6 +13,12 @@
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content>
+  <ion-list>
+    <button ion-item block *ngFor="let scan of scans;let i = index" (click)="OpenScan(i)">
+        <h2>{{scan.type}}</h2>
+        <h3>Hora: {{scan.time}}</h3>
+        <p>{{scan.info}}</p>  
+    </button>
+  </ion-list>
 </ion-content>

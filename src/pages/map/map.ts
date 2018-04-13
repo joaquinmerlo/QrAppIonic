@@ -1,12 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 
-/**
- * Generated class for the MapPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -14,12 +9,20 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'map.html',
 })
 export class MapPage {
+  lat: number;
+  lng: number;
+  params: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private viewCtrl: ViewController) {
+    this.params = this.navParams.get("coords");
+    this.params = this.params.replace("geo:", "");
+    let array = this.params.split(",");
+    this.lat = Number(array[0]);
+    this.lng = Number(array[1]);
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad MapPage');
+  CloseModal() {
+    this.viewCtrl.dismiss();
   }
 
 }
